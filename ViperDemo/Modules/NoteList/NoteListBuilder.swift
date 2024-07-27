@@ -12,7 +12,7 @@ class NoteListModuleBuilder: ViperBuilder {
             presenter: presenter,
             interactor: interactor,
             wireframe: wireframe,
-            router: nil)
+            router: AppRouter.shared)
         return viewController
     }
     // 为 viper 架构的 interactor 注入 noteListDataService

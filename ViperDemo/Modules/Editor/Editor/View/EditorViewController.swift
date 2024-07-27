@@ -41,9 +41,10 @@ class EditorViewController: UIViewController, ViperView,
     private func initUI() {
         self.view.addSubview(self.titleTextField)
         self.view.addSubview(self.contentTextView.view)
-
+        self.titleTextField.translatesAutoresizingMaskIntoConstraints = false
+        self.contentTextView.view.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            self.titleTextField.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 20),
+            self.titleTextField.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 20),
             self.titleTextField.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
             self.titleTextField.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
             self.titleTextField.heightAnchor.constraint(equalToConstant: 40),
@@ -60,7 +61,7 @@ class EditorViewController: UIViewController, ViperView,
         if !self.appeared {
             let addNoteItem = UIBarButtonItem(
                 barButtonSystemItem: .done,
-                target: self.eventHandler,
+                target: self,
                 action: #selector(self.didTouchNavigationBarDoneButton)
             )
             self.navigationItem.rightBarButtonItem = addNoteItem

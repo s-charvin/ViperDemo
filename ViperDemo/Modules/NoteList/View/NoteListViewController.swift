@@ -25,7 +25,7 @@ class NoteListViewController: UIViewController, ViperView,
             forCellReuseIdentifier: "noteListCell"
         )
         self.view.addSubview(self.noteListTableView)
-
+        self.noteListTableView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             self.noteListTableView.topAnchor.constraint(
                 equalTo: self.view.safeAreaLayoutGuide.topAnchor
@@ -56,7 +56,7 @@ class NoteListViewController: UIViewController, ViperView,
 
             let addNoteItem = UIBarButtonItem(
                 barButtonSystemItem: .add,
-                target: self.eventHandler,
+                target: self,
                 action: #selector(
                     self.didTouchNavigationBarAddButton
                 )
@@ -101,7 +101,7 @@ class NoteListViewController: UIViewController, ViperView,
         super.didReceiveMemoryWarning()
     }
 
-    @objc private func didTouchNavigationBarAddButton() {
+    @objc private func didTouchNavigationBarAddButton(_ sender: UITapGestureRecognizer? = nil) {
         if let eventHandler = self.eventHandler as? NoteListViewEventHandler {
             eventHandler.didTouchNavigationBarAddButton()
         }
@@ -201,7 +201,7 @@ extension NoteListViewController: UITableViewDelegate, UITableViewDataSource {
 
 extension NoteListViewController: UIContextMenuInteractionDelegate {
     func contextMenuInteraction(_ interaction: UIContextMenuInteraction, configurationForMenuAtLocation location: CGPoint) -> UIContextMenuConfiguration? {
-        guard let eventHandler = self.eventHandler as? NoteListViewPresenter else {
+        guard let eventHandler = self.eventHandler as? NoteListViewEventHandler else {
             return nil
         }
 

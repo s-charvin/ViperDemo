@@ -16,7 +16,7 @@ class LoginBuilder: ViperBuilder {
             presenter: presenter,
             interactor: interactor,
             wireframe: wireframe,
-            router: nil)
+            router: AppRouter.shared)
         return viewController
     }
 
